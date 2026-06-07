@@ -1,22 +1,21 @@
-*🚀 LeetCode Java Solutions*
+# 🚀 LeetCode Java Solutions
 
-This repository contains my solutions to LeetCode problems written in Java.
+This repository contains my solutions to LeetCode problems solved using Java.
 
-I use this repo to practice Data Structures & Algorithms (DSA) and improve my problem-solving skills for coding interviews.
+I use this repo to practice Data Structures & Algorithms (DSA) and improve my problem-solving skills.
 
-📂 Topics Covered
-Arrays
-Strings
-Linked List
-Stack & Queue
-Trees
-Graphs
-Dynamic Programming
-🛠️ Tech Stack
-Java ☕
-LeetCode
-🎯 Goal
+## 📂 Topics Covered
+- Arrays
+- Strings
+- Linked List
+- Stack & Queue
+- Trees
+- Graphs
+- Dynamic Programming
 
-Improve coding skills and prepare for software engineering interviews.
+## 🛠️ Tech Stack
+- Java ☕
+- LeetCode
 
-⭐ Feel free to explore and use the code for learning.
+## 🎯 Goal
+Improve coding skills and prepare for technical interviews.
