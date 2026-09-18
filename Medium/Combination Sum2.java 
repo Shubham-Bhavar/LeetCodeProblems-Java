@@ -1,0 +1,124 @@
+/*
+LeetCode 40. Combination Sum II
+
+Difficulty: Medium
+
+Problem Statement:
+Given an array candidates and a target integer, find all unique
+combinations where the chosen numbers add up to target.
+
+Rules:
+1. Each number can be used at most once.
+2. The array may contain duplicate numbers.
+3. The answer must not contain duplicate combinations.
+
+Example 1:
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+
+Output:
+[[1,1,6],[1,2,5],[1,7],[2,6]]
+
+Example 2:
+Input: candidates = [2,5,2,1,2], target = 5
+
+Output:
+[[1,2,2],[5]]
+
+Approach:
+Use Backtracking.
+
+1. Sort the array.
+2. Start selecting numbers from the current index.
+3. Each number can be used only once, so recursive call uses i + 1.
+4. If two same numbers are present at the same level,
+   skip the duplicate.
+5. If target becomes 0, store the current combination.
+6. If target becomes negative, stop that path.
+7. Remove the last element while backtracking.
+
+Important Difference from Combination Sum I:
+
+Combination Sum I:
+    Same number can be used multiple times.
+    Recursive call -> i
+
+Combination Sum II:
+    Each number can be used only once.
+    Recursive call -> i + 1
+
+Duplicate Handling:
+    if (i > start && candidates[i] == candidates[i - 1])
+        continue;
+
+Key Idea:
+    Sort -> Choose -> Explore -> Undo
+
+Time Complexity:
+    O(2^n) approximately
+
+Space Complexity:
+    O(n) for recursion and current combination
+*/
+
+import java.util.*;
+
+class Solution {
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        Arrays.sort(candidates);
+
+        backtrack(candidates, target, 0, new ArrayList<>(), result);
+
+        return result;
+    }
+
+    private void backtrack(int[] candidates,
+                           int target,
+                           int start,
+                           List<Integer> current,
+                           List<List<Integer>> result) {
+
+        // Target achieved
+        if (target == 0) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        // Target exceeded
+        if (target < 0) {
+            return;
+        }
+
+        for (int i = start; i < candidates.length; i++) {
+
+            // Skip duplicate numbers at the same level
+            if (i > start && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+
+            // Since array is sorted, no need to continue
+            if (candidates[i] > target) {
+                break;
+            }
+
+            // Choose
+            current.add(candidates[i]);
+
+            // Explore
+            // i + 1 means each element is used only once
+            backtrack(
+                candidates,
+                target - candidates[i],
+                i + 1,
+                current,
+                result
+            );
+
+            // Undo / Backtrack
+            current.remove(current.size() - 1);
+        }
+    }
+}
